@@ -1,5 +1,32 @@
-# Vue 3 + Vite
+# Nuxt 4
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a Nuxt 4 project (migrated from the Vue 3 + Vite starter template).
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Setup
+
+```bash
+npm install
+```
+
+## Development Server
+
+```bash
+npm run dev
+```
+
+Start the development server on `http://localhost:3000`.
+
+## Production
+
+```bash
+npm run build
+npm run preview
+```
+
+For a static site:
+
+```bash
+npm run generate
+```
+
+Learn more about Nuxt in the [Nuxt documentation](https://nuxt.com/docs).

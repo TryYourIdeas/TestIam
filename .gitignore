@@ -12,6 +12,15 @@ dist
 dist-ssr
 *.local
 
+# Nuxt
+.nuxt
+.output
+.data
+.vercel
+.netlify
+.nitro
+.cache
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +31,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment
+.env
+.env.*
+!.env.example
