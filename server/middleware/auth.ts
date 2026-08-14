@@ -2,7 +2,6 @@ import type { H3Event } from 'h3'
 import { getRequestURL, sendRedirect } from 'h3'
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig(event)
   const url = getRequestURL(event)
 
   const code = url.searchParams.get('code')
@@ -10,25 +9,17 @@ export default defineEventHandler(async (event) => {
 
   if (code || state) {
     if (!code || !state) {
-      return sendRedirect(event, `${config.public.auth.loginPath}?error=authentication_failed`)
+      return sendRedirect(event, '/not-authenticated')
     }
     return handleAuthCallback(event, code, state)
-  }
-
-  if (url.pathname === config.auth.authenticatedPath) {
-    const session = await getIamSession(event)
-    if (!session) {
-      return sendRedirect(event, config.public.auth.loginPath)
-    }
   }
 })
 
 async function handleAuthCallback(event: H3Event, code: string, state: string) {
   const config = useRuntimeConfig(event)
   const url = getRequestURL(event)
-  const loginPath = config.public.auth.loginPath
 
-  const fail = () => sendRedirect(event, `${loginPath}?error=authentication_failed`)
+  const fail = () => sendRedirect(event, '/not-authenticated')
 
   const attempt = getAuthAttempt(event)
   if (!attempt) return fail()
