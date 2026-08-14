@@ -14,6 +14,7 @@ dist-ssr
 
 # Nuxt
 .nuxt
+.nuxtrc
 .output
 .data
 .vercel
