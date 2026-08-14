@@ -17,7 +17,7 @@ export function useAuth() {
   async function logout() {
     await $fetch('/api/auth/logout', { method: 'POST' })
     user.value = null
-    await navigateTo(useRuntimeConfig().public.auth.loginPath)
+    await navigateTo('/')
   }
 
   return { user, status, fetchSession, logout }
