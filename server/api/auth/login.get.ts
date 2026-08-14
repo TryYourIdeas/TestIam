@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 
   const session = await getIamSession(event)
   if (session) {
-    return sendRedirect(event, config.auth.authenticatedPath)
+    return sendRedirect(event, '/dashboard')
   }
 
   const attempt = generateAttempt()
