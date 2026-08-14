@@ -6,9 +6,10 @@ export interface AuthUser {
 export function useAuth() {
   const user = useState<AuthUser | null>('auth-user', () => null)
   const status = computed(() => (user.value ? 'authenticated' : 'unauthenticated'))
+  const requestFetch = useRequestFetch()
 
   async function fetchSession(): Promise<AuthUser | null> {
-    const data = await $fetch<{ user: AuthUser | null }>('/api/auth/session')
+    const data = await requestFetch<{ user: AuthUser | null }>('/api/auth/session')
     user.value = data.user
     return data.user
   }

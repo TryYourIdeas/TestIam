@@ -8,11 +8,14 @@ export default defineEventHandler(async (event) => {
   const code = url.searchParams.get('code')
   const state = url.searchParams.get('state')
 
-  if (code && state) {
+  if (code || state) {
+    if (!code || !state) {
+      return sendRedirect(event, `${config.public.auth.loginPath}?error=authentication_failed`)
+    }
     return handleAuthCallback(event, code, state)
   }
 
-  if (event.path === config.auth.authenticatedPath) {
+  if (url.pathname === config.auth.authenticatedPath) {
     const session = await getIamSession(event)
     if (!session) {
       return sendRedirect(event, config.public.auth.loginPath)
@@ -22,6 +25,7 @@ export default defineEventHandler(async (event) => {
 
 async function handleAuthCallback(event: H3Event, code: string, state: string) {
   const config = useRuntimeConfig(event)
+  const url = getRequestURL(event)
   const loginPath = config.public.auth.loginPath
 
   const fail = () => sendRedirect(event, `${loginPath}?error=authentication_failed`)
@@ -60,5 +64,5 @@ async function handleAuthCallback(event: H3Event, code: string, state: string) {
 
   clearAuthAttempt(event)
 
-  return sendRedirect(event, event.path)
+  return sendRedirect(event, url.pathname)
 }
