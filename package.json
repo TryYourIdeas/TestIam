@@ -8,6 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "typecheck": "nuxi typecheck",
+    "test": "vitest run",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -15,8 +16,14 @@
     "vue": "^3.5.40"
   },
   "devDependencies": {
+    "@nuxt/test-utils": "^4.1.0",
+    "@testing-library/user-event": "^14.6.3",
+    "@testing-library/vue": "^8.1.0",
     "@types/node": "^26.1.2",
+    "@vue/test-utils": "^2.4.11",
+    "happy-dom": "^20.11.1",
     "typescript": "^5.9.3",
+    "vitest": "^4.1.10",
     "vue-tsc": "^3.3.9"
   }
 }
