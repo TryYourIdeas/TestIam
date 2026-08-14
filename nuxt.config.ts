@@ -10,13 +10,9 @@ export default defineNuxtConfig({
       clientSecret: '',
     },
     auth: {
-      // The app URL IAM redirects back to with ?code=&state=
-      authenticatedPath: '/',
-    },
-    public: {
-      auth: {
-        loginPath: '/login',
-      },
+      // The path IAM redirects back to with ?code=&state= — must exactly
+      // match this app's registered authenticated_url on iam.
+      authenticatedPath: '/authenticated',
     },
   },
   app: {
