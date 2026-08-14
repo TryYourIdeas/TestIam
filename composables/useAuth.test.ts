@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { useAuth } from './useAuth'
 
 const { fetchMock, requestFetchMock, navigateToMock } = vi.hoisted(() => ({
   fetchMock: vi.fn(),
@@ -12,7 +11,7 @@ mockNuxtImport('$fetch', () => fetchMock)
 mockNuxtImport('useRequestFetch', () => () => requestFetchMock)
 mockNuxtImport('navigateTo', () => navigateToMock)
 
-describe('useAuth', () => {
+describe('useAuth (from nuxt-iam-client)', () => {
   beforeEach(() => {
     fetchMock.mockReset()
     requestFetchMock.mockReset()
@@ -31,7 +30,7 @@ describe('useAuth', () => {
     expect(auth.status.value).toBe('authenticated')
   })
 
-  it('logout clears the session and redirects to /', async () => {
+  it('logout clears the session and redirects to afterLogoutPath', async () => {
     fetchMock.mockResolvedValueOnce({ ok: true })
     const auth = useAuth()
     auth.user.value = { username: 'alice', email: 'alice@example.com' }

@@ -1,7 +1,10 @@
 # Nuxt 4 + IAM SSO
 
 Nuxt 4 app (migrated from the Vue 3 + Vite starter) that authenticates users through the
-`iam` SSO flow described in `IAM_CLIENT_IMPLEMENTATION.md`.
+`iam` SSO flow described in `IAM_CLIENT_IMPLEMENTATION.md`. The actual client-side
+implementation of that flow (server routes, middleware, session store, `useAuth`
+composable) lives in the `nuxt-iam-client` Nuxt module at `../lib/nuxt-iam-client`
+(reusable by other apps in `web/`) — this app only owns the pages/UI built on top of it.
 
 ## Setup
 
@@ -60,10 +63,11 @@ npm run preview
 | `/api/auth/logout` (POST) | Destroys the local session (does not affect the `iam`-level session). |
 | `/api/auth/session` | Returns the current user (`username`, `email`) or `null`. |
 
-Server-side (`server/`):
-
-- `server/utils/auth.ts` — attempt/state/nonce generation, code exchange, refresh, JWT payload decoding, and the server-side session store.
-- `server/middleware/auth.ts` — handles the `?code=&state=` OAuth exchange (state, nonce, aud, exp checks), creates the session, and redirects to `/authenticated` on success or `/not-authenticated` on failure. Per-route session guarding lives in the pages themselves (`pages/authenticated.vue`, `pages/dashboard.vue`), not in this middleware.
+The server routes above, the OAuth-exchange middleware, the session store, and the
+`useAuth` composable are all supplied by the `nuxt-iam-client` module — see its own
+README for how the flow is implemented. Per-route session guarding lives in this app's
+pages themselves (`pages/authenticated.vue`, `pages/dashboard.vue`), not in that
+middleware.
 
 Notes (Phase 1 of `iam`):
 

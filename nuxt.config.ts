@@ -2,18 +2,16 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
-  runtimeConfig: {
+  modules: ['nuxt-iam-client'],
+  iamClient: {
     // Server-only secrets (never exposed to the client)
     iam: {
       url: '',
       appId: '',
       clientSecret: '',
     },
-    auth: {
-      // The path IAM redirects back to with ?code=&state= — must exactly
-      // match this app's registered authenticated_url on iam.
-      authenticatedPath: '/authenticated',
-    },
+    // authenticatedPath/afterLoginPath/notAuthenticatedPath/afterLogoutPath
+    // all match this app's defaults already, so left unset here.
   },
   app: {
     head: {

@@ -4,6 +4,8 @@ What an application must implement to authenticate users through `iam`'s SSO flo
 
 TypeScript examples are framework-agnostic (plain `fetch` + generic request/cookie helpers) so they can be adapted to any backend — Nitro, Express, etc.
 
+For a Nuxt app, `../lib/nuxt-iam-client` already implements this checklist as a reusable module — see its README before implementing any of this from scratch.
+
 ## Implementation checklist
 
 Everything below must exist in the client app's own codebase. Section references point to where each item is explained.
