@@ -28,7 +28,7 @@ No lint script is configured in `package.json`. Unit tests use Vitest with `@nux
 
 `nuxt.config.ts` registers `modules: ['nuxt-iam-client']` and passes its options under the `iamClient` key, populated from `.env` (see `.env.example`):
 
-- `NUXT_IAM_URL`, `NUXT_IAM_APP_ID`, `NUXT_IAM_CLIENT_SECRET` — server-only, obtained once from `iam`'s admin dashboard (never exposed to the client, never committed). Map to `iamClient.iam.{url,appId,clientSecret}`.
+- `NUXT_IAM_URL`, `NUXT_IAM_APP_ID`, `NUXT_IAM_APP_SECRET` — server-only, obtained once from `iam`'s admin dashboard (never exposed to the client, never committed). Map to `iamClient.iam.{url,appId,appSecret}`.
 - The module's four path options (`authenticatedPath`, `afterLoginPath`, `notAuthenticatedPath`, `afterLogoutPath`) are left at their defaults in `nuxt.config.ts` — they already match this app's routes (`/authenticated`, `/dashboard`, `/not-authenticated`, `/`), so there's nothing to override. `authenticatedPath` must exactly match the `authenticated_url` registered with `iam`.
 
 ## Architecture

@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     iam: {
       url: '',
       appId: '',
-      clientSecret: '',
+      appSecret: '',
     },
     // authenticatedPath/afterLoginPath/notAuthenticatedPath/afterLogoutPath
     // all match this app's defaults already, so left unset here.

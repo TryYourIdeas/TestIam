@@ -20,7 +20,7 @@ client applications"; the old `register-app` CLI script is retired):
 ```ini
 NUXT_IAM_URL=https://iam.tryyourideas.com
 NUXT_IAM_APP_ID=<app_id>
-NUXT_IAM_CLIENT_SECRET=<client_secret>
+NUXT_IAM_APP_SECRET=<client_secret>
 ```
 
 The `authenticated_url` registered with `iam` must point at
